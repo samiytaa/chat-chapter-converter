@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>聊天记录和章节转换器</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">Pure Frontend Converter</p>
+        <h1>TXT 转聊天记录 JSONL</h1>
+        <p class="intro">浏览器内完成分卷排序、章节拆分、模板套用和 JSONL 导出，不依赖后端。</p>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>转换输入</h2>
+          <button id="buildSampleButton" class="ghost-button" type="button">填入上次模板</button>
+        </div>
+
+        <form id="converterForm" class="form-grid">
+          <label class="field">
+            <span>文本文件（支持多选）</span>
+            <input id="txtFiles" type="file" accept=".txt,text/plain" multiple required>
+          </label>
+
+          <label class="field">
+            <span>JSONL 模板文件</span>
+            <input id="templateFile" type="file" accept=".jsonl,application/json">
+          </label>
+
+          <label class="field textarea-field">
+            <span>模板内容（可直接粘贴，上传文件时会自动填入）</span>
+            <textarea id="templateText" rows="10" placeholder='第一行应为 chat_metadata，后续至少包含一条 AI 消息'></textarea>
+          </label>
+
+          <div class="actions">
+            <button id="convertButton" class="primary-button" type="submit">转换并下载</button>
+          </div>
+
+          <p id="status" class="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel panel-secondary">
+        <h2>规则摘要</h2>
+        <ul class="rules">
+          <li>按文件名里的“第 X 卷”自动排序，未命中的文件保持原始顺序。</li>
+          <li>章节标题识别“第1章 / 第一章”一类格式。</li>
+          <li>导出内容结构与原 Python 版本一致：首行为 metadata，后续为 AI 消息。</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
