@@ -21,6 +21,11 @@
         </div>
 
         <form id="converterForm" class="form-grid">
+          <label class="field textarea-field">
+            <span>模板内容（可直接粘贴，上传文件时会自动填入）</span>
+            <textarea id="templateText" rows="10" placeholder='第一行应为 chat_metadata，后续至少包含一条 AI 消息'></textarea>
+          </label>
+
           <label class="field">
             <span>文本文件（支持多选）</span>
             <input id="txtFiles" type="file" accept=".txt,text/plain" multiple required>
@@ -29,11 +34,6 @@
           <label class="field">
             <span>JSONL 模板文件</span>
             <input id="templateFile" type="file" accept=".jsonl,application/json">
-          </label>
-
-          <label class="field textarea-field">
-            <span>模板内容（可直接粘贴，上传文件时会自动填入）</span>
-            <textarea id="templateText" rows="10" placeholder='第一行应为 chat_metadata，后续至少包含一条 AI 消息'></textarea>
           </label>
 
           <div class="actions">
